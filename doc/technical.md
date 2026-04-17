@@ -18,14 +18,15 @@ Robots.Tests/         — unit tests (xUnit + FluentAssertions)
 
 ## Models (`Models/`)
 
-| Class | Purpose |
-|---|---|
-| `World` | Root object: contains `Surface` and a list of `Robot` |
-| `Surface` | Grid dimensions (`Width × Height`) and `DangerousCells` — coordinates of cells where a robot has previously fallen off |
-| `Robot` | Position (`X`, `Y`), direction (`Orientation`), command list, and `IsLost` flag |
-| `Orientation` | Enum: `N`, `E`, `S`, `W` |
-| `Command` | Enum: `L` (turn left), `R` (turn right), `F` (move forward) |
-| `CommandsList` | Inherits `List<Command>` — a robot's command sequence |
+| Class.         | Purpose                                                                         |
+|----------------|---------------------------------------------------------------------------------|
+| `World`        | Root object: contains `Surface` and a list of `Robot`                           |
+| `Surface`      | Grid dimensions (`Width × Height`) and `DangerousCells`                         |
+|                |  — coordinates of cells where a robot has previously fallen off                 |
+| `Robot`        | Position (`X`, `Y`), direction (`Orientation`), command list, and `IsLost` flag |
+| `Orientation`  | Enum: `N`, `E`, `S`, `W`                                                        |
+| `Command`      | Enum: `L` (turn left), `R` (turn right), `F` (move forward)                     |
+| `CommandsList` | Inherits `List<Command>` — a robot's command sequence                           |
 
 ## Services (`Services/`)
 
@@ -70,12 +71,12 @@ Limits (`maxCoord`, `maxCommands`) are configurable via CLI options.
 
 Uses `System.CommandLine`. Options:
 
-| Flag | Description | Default |
-|---|---|---|
-| `--script`, `-s` | Path to the script file | `script.txt` |
-| `--verbose`, `-v` | Detailed step-by-step logging | `false` |
-| `--max-commands`, `-m` | Max commands per robot | `100` |
-| `--max-coord`, `-c` | Max allowed coordinate value | `50` |
+| Flag                   | Description                    | Default      |
+|------------------------|--------------------------------|--------------|
+| `--script`, `-s`       | Path to the script file        | `script.txt` |
+| `--verbose`, `-v`      | Detailed step-by-step logging. | `false`      |
+| `--max-commands`, `-m` | Max commands per robot         | `100`        |
+| `--max-coord`, `-c`    | Max allowed coordinate value   | `50`         |
 
 ## Execution Flow
 
@@ -86,10 +87,10 @@ CLI parsing → ScriptReader.Read() → WorldValidator.Validate()
 
 ## Tests (`Robots.Tests/`)
 
-| File | Coverage |
-|---|---|
-| `ValidatorTests.cs` | Coordinate, command, and boundary validation |
-| `SimulatorTests.cs` | Movement logic, robot loss, dangerous cells |
-| `ScriptReaderTests.cs` | Script parsing, format errors |
-| `FormatLogTests.cs` | Output formatting |
-| `NullLogger.cs` | `IAppLogger` stub for tests |
+| File                   | Coverage                                     |
+|------------------------|----------------------------------------------|
+| `ValidatorTests.cs`    | Coordinate, command, and boundary validation |
+| `SimulatorTests.cs`    | Movement logic, robot loss, dangerous cells  |
+| `ScriptReaderTests.cs` | Script parsing, format errors                |
+| `FormatLogTests.cs`    | Output formatting                            |
+| `NullLogger.cs`        | `IAppLogger` stub for tests                  |
