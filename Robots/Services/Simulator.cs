@@ -80,9 +80,9 @@ public class Simulator
 
         if (IsOutOfBounds(nextX, nextY))
         {
-            if (!world.DangerousCells.Contains((robot.X, robot.Y)))
+            if (!world.Surface.DangerousCells.Contains((robot.X, robot.Y)))
             {
-                world.DangerousCells.Add((robot.X, robot.Y));
+                world.Surface.DangerousCells.Add((robot.X, robot.Y));
                 robot.IsLost = true;
             }
         }

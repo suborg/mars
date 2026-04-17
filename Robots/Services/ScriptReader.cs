@@ -44,8 +44,7 @@ public class ScriptReader : IScriptReader
         return new World
         {
             Surface = surface,
-            Robots = robots,
-            DangerousCells = []
+            Robots = robots
         };
     }
 

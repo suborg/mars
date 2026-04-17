@@ -17,8 +17,7 @@ public class ValidatorTests
         var world = new World
         {
             Surface = new Surface { Width = 51, Height = 3 },
-            Robots = [new Robot { X = 0, Y = 0, Orientation = Orientation.N, Commands = [Command.F] }],
-            DangerousCells = []
+            Robots = [new Robot { X = 0, Y = 0, Orientation = Orientation.N, Commands = [Command.F] }]
         };
 
         var result = new WorldValidator().Validate(world);
@@ -35,8 +34,7 @@ public class ValidatorTests
         var world = new World
         {
             Surface = new Surface { Width = 5, Height = 5 },
-            Robots = [new Robot { X = 0, Y = 0, Orientation = Orientation.N, Commands = commands }],
-            DangerousCells = []
+            Robots = [new Robot { X = 0, Y = 0, Orientation = Orientation.N, Commands = commands }]
         };
 
         var result = new WorldValidator().Validate(world);
@@ -54,8 +52,7 @@ public class ValidatorTests
         var world = new World
         {
             Surface = new Surface { Width = 5, Height = 5 },
-            Robots = [new Robot { X = 0, Y = 0, Orientation = Orientation.N, Commands = commands }],
-            DangerousCells = []
+            Robots = [new Robot { X = 0, Y = 0, Orientation = Orientation.N, Commands = commands }]
         };
 
         var result = new WorldValidator(maxCommands: 10).Validate(world);
@@ -69,8 +66,7 @@ public class ValidatorTests
         var world = new World
         {
             Surface = new Surface { Width = 5, Height = 5 },
-            Robots = [new Robot { X = 6, Y = 0, Orientation = Orientation.N, Commands = [Command.F] }],
-            DangerousCells = []
+            Robots = [new Robot { X = 6, Y = 0, Orientation = Orientation.N, Commands = [Command.F] }]
         };
 
         var result = new WorldValidator().Validate(world);
@@ -85,8 +81,7 @@ public class ValidatorTests
         var world = new World
         {
             Surface = new Surface { Width = 5, Height = 5 },
-            Robots = [new Robot { X = -1, Y = -1, Orientation = Orientation.N, Commands = [Command.F] }],
-            DangerousCells = []
+            Robots = [new Robot { X = -1, Y = -1, Orientation = Orientation.N, Commands = [Command.F] }]
         };
 
         var result = new WorldValidator().Validate(world);
