@@ -45,7 +45,7 @@ public class ScriptReader : IScriptReader
         {
             Surface = surface,
             Robots = robots,
-            DangerousCells = new bool[surface.Width + 1, surface.Height + 1]
+            DangerousCells = []
         };
     }
 

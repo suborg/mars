@@ -62,7 +62,7 @@ public static class FormatLog
             {
                 bool insideX = (x >= 0 && x <= w);
                 bool insideY = (y >= 0 && y <= h);
-                bool isDangerous = insideX && insideY && world.DangerousCells[x, y];
+                bool isDangerous = insideX && insideY && world.DangerousCells.Contains((x, y));
 
                 if (robotMap.TryGetValue((x, y), out var robot))
                 {

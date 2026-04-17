@@ -18,7 +18,7 @@ public class ValidatorTests
         {
             Surface = new Surface { Width = 51, Height = 3 },
             Robots = [new Robot { X = 0, Y = 0, Orientation = Orientation.N, Commands = [Command.F] }],
-            DangerousCells = new bool[52, 4]
+            DangerousCells = []
         };
 
         var result = new WorldValidator().Validate(world);
@@ -36,7 +36,7 @@ public class ValidatorTests
         {
             Surface = new Surface { Width = 5, Height = 5 },
             Robots = [new Robot { X = 0, Y = 0, Orientation = Orientation.N, Commands = commands }],
-            DangerousCells = new bool[6, 6]
+            DangerousCells = []
         };
 
         var result = new WorldValidator().Validate(world);
@@ -55,7 +55,7 @@ public class ValidatorTests
         {
             Surface = new Surface { Width = 5, Height = 5 },
             Robots = [new Robot { X = 0, Y = 0, Orientation = Orientation.N, Commands = commands }],
-            DangerousCells = new bool[6, 6]
+            DangerousCells = []
         };
 
         var result = new WorldValidator(maxCommands: 10).Validate(world);
@@ -70,7 +70,7 @@ public class ValidatorTests
         {
             Surface = new Surface { Width = 5, Height = 5 },
             Robots = [new Robot { X = 6, Y = 0, Orientation = Orientation.N, Commands = [Command.F] }],
-            DangerousCells = new bool[6, 6]
+            DangerousCells = []
         };
 
         var result = new WorldValidator().Validate(world);
@@ -86,7 +86,7 @@ public class ValidatorTests
         {
             Surface = new Surface { Width = 5, Height = 5 },
             Robots = [new Robot { X = -1, Y = -1, Orientation = Orientation.N, Commands = [Command.F] }],
-            DangerousCells = new bool[6, 6]
+            DangerousCells = []
         };
 
         var result = new WorldValidator().Validate(world);
