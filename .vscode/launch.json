@@ -2,6 +2,17 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch Robots (console input)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Robots/bin/Debug/net8.0/Robots.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Robots",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    },
+    {
       "name": "Launch Robots (script.txt)",
       "type": "coreclr",
       "request": "launch",

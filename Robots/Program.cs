@@ -9,10 +9,11 @@ class Program
 {
     static int Main(string[] args)
     {
-        var scriptOption = new Option<FileInfo>("--script", "-s")
+        var scriptOption = new Option<FileInfo?>("--script", "-s")
         {
-            Description = "Path to the script file with robot instructions",
-            DefaultValueFactory = _ => new FileInfo("script.txt")
+            Description = "Path to the script file. If omitted, reads from console. If specified without a value, uses script.txt",
+            Arity = ArgumentArity.ZeroOrOne,
+            DefaultValueFactory = _ => null
         };
 
         var verboseOption = new Option<bool>("--verbose", "-v")
@@ -46,13 +47,18 @@ class Program
             var verbose = parseResult.GetValue(verboseOption);
             var maxCommands = parseResult.GetValue(maxCommandsOption);
             var maxCoord = parseResult.GetValue(maxCoordOption);
-            return RunSimulation(scriptFile!, verbose, maxCommands, maxCoord);
+
+            // --script specified without a value → use default file
+            if (scriptFile == null && parseResult.Tokens.Any(t => t.Value == "--script" || t.Value == "-s"))
+                scriptFile = new FileInfo("script.txt");
+
+            return RunSimulation(scriptFile, verbose, maxCommands, maxCoord);
         });
 
         return rootCommand.Parse(args).Invoke();
     }
 
-    static int RunSimulation(FileInfo scriptFile, bool verbose, int maxCommands, int maxCoord)
+    static int RunSimulation(FileInfo? scriptFile, bool verbose, int maxCommands, int maxCoord)
     {
         var services = new ServiceCollection();
         services.AddSingleton<IAppLogger, ConsoleLogger>();
@@ -62,30 +68,41 @@ class Program
         var logger = provider.GetRequiredService<IAppLogger>();
         var scriptReader = provider.GetRequiredService<IScriptReader>();
 
-        if (!scriptFile.Exists)
-        {
-            logger.LogError($"Script file not found: {scriptFile.FullName}");
-            return 1;
-        }
-
         try
         {
-            using var streamReader = new StreamReader(scriptFile.FullName);
-            var world = scriptReader.Read(streamReader);
-
-            var validator = new WorldValidator(maxCommands, maxCoord);
-            var result = validator.Validate(world);
-            if (!result.IsValid)
+            TextReader reader;
+            if (scriptFile != null)
             {
-                foreach (var error in result.Errors)
-                    logger.LogError(error.ErrorMessage);
-                return 1;
+                if (!scriptFile.Exists)
+                {
+                    logger.LogError($"Script file not found: {scriptFile.FullName}");
+                    return 1;
+                }
+                reader = new StreamReader(scriptFile.FullName);
+            }
+            else
+            {
+                reader = Console.In;
             }
 
-            var simulator = new Simulator(world, logger) { Verbose = verbose };
-            simulator.Run();
-            Console.Write(FormatLog.Format(world));
-            return 0;
+            using (reader)
+            {
+                var world = scriptReader.Read(reader);
+
+                var validator = new WorldValidator(maxCommands, maxCoord);
+                var result = validator.Validate(world);
+                if (!result.IsValid)
+                {
+                    foreach (var error in result.Errors)
+                        logger.LogError(error.ErrorMessage);
+                    return 1;
+                }
+
+                var simulator = new Simulator(world, logger) { Verbose = verbose };
+                simulator.Run();
+                Console.Write(FormatLog.Format(world));
+                return 0;
+            }
         }
         catch (Exception ex)
         {
