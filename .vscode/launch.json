@@ -1,0 +1,48 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Robots (script.txt)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Robots/bin/Debug/net8.0/Robots.dll",
+      "args": ["--script", "script.txt"],
+      "cwd": "${workspaceFolder}/Robots",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Launch Robots (verbose)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Robots/bin/Debug/net8.0/Robots.dll",
+      "args": ["--script", "script.txt", "--verbose"],
+      "cwd": "${workspaceFolder}/Robots",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Launch Robots (help)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Robots/bin/Debug/net8.0/Robots.dll",
+      "args": ["--help"],
+      "cwd": "${workspaceFolder}/Robots",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Run Tests",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "test",
+      "program": "${workspaceFolder}/Robots.Tests/bin/Debug/net8.0/Robots.Tests.dll",
+      "cwd": "${workspaceFolder}/Robots.Tests",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    }
+  ]
+}
