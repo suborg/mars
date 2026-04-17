@@ -20,7 +20,7 @@ public static class FormatLog
         return sb.ToString();
     }
 
-    public static string MultilineMapASCIIImageOfWorld(World world)
+    public static string ASCII(World world)
     {
         int w = world.Surface.Width;
         int h = world.Surface.Height;

@@ -49,10 +49,10 @@ public class FormatLogTests
     }
 
     [Fact]
-    public void MultilineMapASCIIImageOfWorld_ContainsRobotMarker()
+    public void ASCII_ContainsRobotMarker()
     {
         var world = Read("3 3\n1 1 E\nR");
-        var image = FormatLog.MultilineMapASCIIImageOfWorld(world);
+        var image = FormatLog.ASCII(world);
 
         // Should contain robot marker with arrow
         image.Should().Contain("1");
